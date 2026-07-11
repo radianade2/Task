@@ -1,0 +1,86 @@
+﻿@model List<PlanningWebAgit.Models.RencanaModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h4>Rencana Produksi by Asep</h4>
+    <form method="post" asp-action="Ratakan">
+        <div class="form-group">
+            <label for="inputArray" class="mb-2">Masukkan angka rencana awal di sini:</label>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Senin</th>
+                        <th>Selasa</th>
+                        <th>Rabu</th>
+                        <th>Kamis</th>
+                        <th>Jumat</th>
+                        <th>Sabtu</th>
+                        <th>Minggu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" class="form-control" name="senin" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="selasa" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="rabu" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="kamis" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="jumat" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="sabtu" value="0" min="0" required /></td>
+                        <td><input type="number" class="form-control" name="minggu" value="0" min="0" required /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </div>
+    </form>
+</div>
+
+<hr class="my-5" /> 
+
+<div class="text-center">
+    <h4 class="mb-3">Riwayat Rencana Produksi Sebelum dan Setelah Diratakan</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Senin</th>
+                <th>Selasa</th>
+                <th>Rabu</th>
+                <th>Kamis</th>
+                <th>Jumat</th>
+                <th>Sabtu</th>
+                <th>Minggu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var rencana in Model)
+            {
+                <tr>
+                    <td>@rencana.TanggalProduksi.ToString("dd/MM/yyyy")</td>
+                    <td>@rencana.SeninAsli</td>
+                    <td>@rencana.SelasaAsli</td>
+                    <td>@rencana.RabuAsli</td>
+                    <td>@rencana.KamisAsli</td>
+                    <td>@rencana.JumatAsli</td>
+                    <td>@rencana.SabtuAsli</td>
+                    <td>@rencana.MingguAsli</td>
+                </tr>
+
+                <tr class="table-success">
+                    <td>Setelah Diratakan</td>
+                    <td>@rencana.SeninHasil</td>
+                    <td>@rencana.SelasaHasil</td>
+                    <td>@rencana.RabuHasil</td>
+                    <td>@rencana.KamisHasil</td>
+                    <td>@rencana.JumatHasil</td>
+                    <td>@rencana.SabtuHasil</td>
+                    <td>@rencana.MingguHasil</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
